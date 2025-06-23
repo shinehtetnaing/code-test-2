@@ -6,7 +6,7 @@ const App = () => {
   return (
     <div className="min-h-screen bg-gray-100">
       <Header />
-      <div className="flex gap-5 p-6">
+      <div className="flex flex-col-reverse w-full lg:flex-row gap-10 md:gap-5 p-6">
         <PlayerList />
         <TeamList />
       </div>

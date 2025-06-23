@@ -52,11 +52,12 @@ const TeamList = () => {
   if (isError) return <p>Error loading teams.</p>;
 
   return (
-    <div className="space-y-4 max-w-lg">
+    <div className="space-y-4 w-full">
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
           <Button
             variant="outline"
+            className="mb-5 md:mb-10"
             onClick={() => {
               setEditTeam(undefined);
               setOpen(true);
@@ -78,7 +79,7 @@ const TeamList = () => {
         </DialogContent>
       </Dialog>
 
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-3 2xl:grid-cols-5 gap-4">
         {isLoading ? (
           <p className="text-sm text-muted-foreground">Loading...</p>
         ) : teams.length === 0 ? (
@@ -87,7 +88,7 @@ const TeamList = () => {
           teams.map((team: Team) => (
             <Card
               key={team.name}
-              className="flex items-center justify-between p-4 shadow-sm"
+              className="flex items-center justify-between p-4 w-[200px] shadow-sm"
             >
               <div>
                 <h4 className="font-semibold text-lg capitalize">

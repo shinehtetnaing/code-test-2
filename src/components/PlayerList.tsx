@@ -9,6 +9,7 @@ import { useEffect, useRef } from "react";
 import AddPlayerToTeamDialog from "./AddPlayerToTeamDialog";
 import type { Team } from "./TeamList";
 import { Button } from "./ui/button";
+import { Skeleton } from "./ui/skeleton";
 
 export type Player = {
   id: number;
@@ -103,10 +104,12 @@ export default function PlayerList() {
   }, [fetchNextPage, hasNextPage, isFetchingNextPage]);
 
   return (
-    <div className="space-y-4 max-w-xl w-full">
-      {status === "pending" && (
-        <p className="text-center">Loading players...</p>
-      )}
+    <div className="space-y-4 md:max-w-xl w-full">
+      <h1 className="text-3xl font-semibold mb-5 md:mb-10">Players List</h1>
+      {status === "pending" &&
+        Array.from({ length: 10 }).map((_, i) => (
+          <Skeleton key={i} className="h-[60px] w-full bg-gray-200 mb-5" />
+        ))}
       {status === "error" && (
         <p className="text-center text-red-500">Failed to load players</p>
       )}
@@ -158,7 +161,7 @@ export default function PlayerList() {
         })
       )}
 
-      <div ref={observerRef} className="h-12" />
+      <div ref={observerRef} className="h-5" />
       {isFetchingNextPage && <p className="text-center">Loading more...</p>}
     </div>
   );
